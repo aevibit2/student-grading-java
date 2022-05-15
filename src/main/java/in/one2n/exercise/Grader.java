@@ -1,29 +1,47 @@
 package in.one2n.exercise;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.opencsv.bean.CsvToBeanBuilder;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
 
 public class Grader {
 
     public List<Student> parseCSV(String filepath) {
-        // TODO: add your implementation here
-        return Collections.emptyList();
+        List<Student> students = Collections.emptyList();
+        try {
+            students = new CsvToBeanBuilder(new FileReader(filepath))
+                    .withType(Student.class)
+                    .build()
+                    .parse();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return students;
     }
 
     public List<Student> calculateGrade(List<Student> students) {
-        // TODO: add your implementation here
-        return Collections.emptyList();
+        for (Student s : students) {
+            s.computeFinalScoreAndGrade();
+        }
+        return students;
     }
 
     public Student findOverallTopper(List<Student> gradedStudents) {
-        // TODO: add your implementation here
-        return null;
+        Student topper = gradedStudents.stream()
+                .max(Comparator.comparing(Student::getFinalScore)).
+                orElseThrow(NoSuchElementException::new);
+        return topper;
     }
 
     public Map<String, Student> findTopperPerUniversity(List<Student> gradedStudents) {
-        // TODO: add your implementation here
-        return new HashMap<>();
+        HashMap<String, Student> result = new HashMap();
+        for (Student s: gradedStudents) {
+            if(!(result.containsKey(s.getUniversity())) ||
+                    result.get(s.getUniversity()).getFinalScore() < s.getFinalScore()) {
+                result.put(s.getUniversity(), s);
+            }
+        }
+        return result;
     }
 }
