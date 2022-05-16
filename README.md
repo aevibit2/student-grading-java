@@ -1,3 +1,6 @@
+# Implementation Details
+
+A third party dependency "opencsv" has been used to parse the csv.
 
 # Problem statement
 This repo contains an exercise related to grading the students from various universities. Your job is to fork the repository,
