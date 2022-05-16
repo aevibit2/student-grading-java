@@ -1,6 +1,3 @@
-# Implementation Details
-
-A third party dependency "opencsv" has been used to parse the csv.
 
 # Problem statement
 This repo contains an exercise related to grading the students from various universities. Your job is to fork the repository,
@@ -160,3 +157,7 @@ You need to identify and fix the compiler errors. After fixing all the compiler 
 4. All my test cases are passing, how do I submit the solution to this exercise?
 
 Create a short video demo (< 1min) demonstrating your code and the passing tests. Push the demo video in your forked repository and send us a link to your solution by email.
+
+# Implementation Details
+
+A third party dependency "opencsv" has been used to parse the csv.
