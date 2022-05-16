@@ -106,6 +106,7 @@ public class Student {
         return grade;
     }
 
+    // Calculate Final Score and Grade of Student
     public void computeFinalScoreAndGrade() {
         finalScore = (test1Score + test2Score + test3Score + test4Score) / 4;
         if (finalScore >= 70) {
@@ -119,27 +120,25 @@ public class Student {
         }
     }
 
+    // Overriding equals method to compare two objects.
     @Override
     public boolean equals(Object o) {
 
-        // If the object is compared with itself then return true
         if (o == this) {
             return true;
         }
 
-        /* Check if o is an instance of Complex or not
-          "null instanceof [type]" also returns false */
         if (!(o instanceof Student)) {
             return false;
         }
 
-        // typecast o to Complex so that we can compare data members
-        Student c = (Student) o;
+        // Typecasting Object to Student type Object.
+        Student s = (Student) o;
 
-        // Compare the data members and return accordingly
-        return firstname.equals(c.firstname) &&
-                lastname.equals(c.lastname) &&
-                university.equals(c.university);
+        // Comparing First name,Last name and University data member of Object.
+        return firstname.equals(s.firstname) &&
+                lastname.equals(s.lastname) &&
+                university.equals(s.university);
     }
 
 }

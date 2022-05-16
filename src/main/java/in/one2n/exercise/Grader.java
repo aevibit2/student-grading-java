@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Grader {
 
+    // Parse CSV file and store in a list of Student.
     public List<Student> parseCSV(String filepath) {
         List<Student> students = Collections.emptyList();
         try {
@@ -20,6 +21,7 @@ public class Grader {
         return students;
     }
 
+    // Calculate Grades of Students based on their marks.
     public List<Student> calculateGrade(List<Student> students) {
         for (Student s : students) {
             s.computeFinalScoreAndGrade();
@@ -27,17 +29,18 @@ public class Grader {
         return students;
     }
 
+    // Finds Overall Topper from the List of Students.
     public Student findOverallTopper(List<Student> gradedStudents) {
-        Student topper = gradedStudents.stream()
+        return gradedStudents.stream()
                 .max(Comparator.comparing(Student::getFinalScore)).
                 orElseThrow(NoSuchElementException::new);
-        return topper;
     }
 
+    // Find Topper Student for each University based on their Final Score.
     public Map<String, Student> findTopperPerUniversity(List<Student> gradedStudents) {
         HashMap<String, Student> result = new HashMap();
-        for (Student s: gradedStudents) {
-            if(!(result.containsKey(s.getUniversity())) ||
+        for (Student s : gradedStudents) {
+            if (!(result.containsKey(s.getUniversity())) ||
                     result.get(s.getUniversity()).getFinalScore() < s.getFinalScore()) {
                 result.put(s.getUniversity(), s);
             }
